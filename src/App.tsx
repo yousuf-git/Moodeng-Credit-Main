@@ -169,14 +169,7 @@ export default function App() {
                   </Layout>
                }
             />
-            <Route
-               path="/user/:username"
-               element={
-                  <Layout>
-                     <UserProfile />
-                  </Layout>
-               }
-            />
+            <Route path="/user/:username" element={<UserProfile />} />
             <Route
                path="/ut"
                element={
