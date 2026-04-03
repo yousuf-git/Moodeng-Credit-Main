@@ -95,6 +95,22 @@ export const fetchLoans = createAsyncThunk('loans/fetch', async () => {
    return (data || []).map(mapSupabaseLoanToLoan);
 });
 
+export const getLenderRepaidCount = createAsyncThunk('loans/getLenderRepaidCount', async (lenderUserId: string) => {
+   const supabase = supabaseClient();
+
+   const { count, error } = await supabase
+      .from('loans')
+      .select('*', { count: 'exact', head: true })
+      .eq('lender_user_id', lenderUserId)
+      .eq('repayment_status', 'REPAID');
+
+   if (error) {
+      throw new Error(error.message);
+   }
+
+   return count ?? 0;
+});
+
 export const getUserLoans = createAsyncThunk(
    'loans/getUserLoans',
    async ({ userId, username }: { userId?: string | null; username?: string | null }) => {

@@ -33,3 +33,17 @@ export const formatNumber = (value: number | string | null | undefined): string 
 
    return numValue.toFixed(2).replace(/\.?0+$/, '');
 };
+
+/**
+ * Formats a value as currency with exactly 2 decimal places.
+ * Always shows cents: 5 → "5.00", 1.1 → "1.10", 1.11 → "1.11"
+ */
+export const formatCurrency = (value: number | string | null | undefined): string => {
+   if (value === null || value === undefined) return '0.00';
+
+   const numValue = typeof value === 'number' ? value : Number(value);
+
+   if (isNaN(numValue)) return '0.00';
+
+   return numValue.toFixed(2);
+};

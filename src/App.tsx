@@ -85,9 +85,7 @@ export default function App() {
                path="/dashboard"
                element={
                   <ProtectedRoute>
-                     <Layout>
-                        <Dashboard />
-                     </Layout>
+                     <Dashboard />
                   </ProtectedRoute>
                }
             />
